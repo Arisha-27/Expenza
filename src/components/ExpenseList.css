@@ -1,0 +1,21 @@
+.expense-list {
+  margin: 20px;
+}
+
+.expense-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.expense-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.expense-list .income {
+  color: green;
+}
+
+.expense-list .expense {
+  color: red;
+}

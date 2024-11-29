@@ -1,0 +1,126 @@
+/* Container for the Settings page */
+.settings-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Adds consistent spacing between sections */
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile Edit Section */
+.profile-edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Adds space between profile picture and inputs */
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #4caf50;
+  object-fit: cover;
+}
+
+/* Styling for all inputs */
+input[type="text"], input[type="file"], input[type="number"] {
+  width: 80%;
+  max-width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+/* Budget Input Styling */
+.budget-input {
+  width: 80%;
+  max-width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+/* Buttons */
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  background-color: #4caf50; /* Green */
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* Notification Switch */
+.settings-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.settings-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* Responsive Styling */
+@media (max-width: 600px) {
+  .settings-container {
+    padding: 15px;
+  }
+
+  input[type="text"], input[type="file"], button {
+    max-width: 100%;
+  }
+}

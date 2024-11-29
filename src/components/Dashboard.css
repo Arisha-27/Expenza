@@ -1,0 +1,65 @@
+.dashboard {
+  padding: 20px;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between; /* Align boxes evenly */
+  margin-bottom: 20px;
+  gap: 20px; /* Space between cards */
+  flex-wrap: wrap; /* Ensure cards wrap on smaller screens */
+}
+
+.card {
+  flex: 1; /* Allow cards to adjust proportionally */
+  min-width: 250px; /* Prevent cards from shrinking too much */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between; /* Space forms apart */
+  gap: 20px; /* Add space between forms */
+  margin-top: 20px;
+}
+
+.form-container {
+  flex: 1; /* Allow both forms to grow evenly */
+  min-width: 350px; /* Increase minimum width for larger forms */
+  max-width: 450px; /* Add a reasonable maximum width */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #45a049;
+}
