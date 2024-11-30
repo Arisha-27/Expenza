@@ -9,45 +9,57 @@ import Settings from './components/Settings';
 import ContactUs from './components/ContactUs';
 import Graph from './components/Graph';
 import MyChartComponent from './components/MyChartComponent';
-import { ProfileProvider } from './context/ProfileContext';  // Import ProfileProvider
+import { ProfileProvider } from './context/ProfileContext';
 
 function App() {
   const [selectedSection, setSelectedSection] = useState('Home');
-  const [transactions, setTransactions] = useState([]);
-  const [income, setIncome] = useState(0);
-  const [expense, setExpense] = useState(0);
+  const [transactions, setTransactions] = useState(JSON.parse(localStorage.getItem('transactions')) || []);
+  const [income, setIncome] = useState(parseFloat(localStorage.getItem('income')) || 0);
+  const [expense, setExpense] = useState(parseFloat(localStorage.getItem('expense')) || 0);
   const [isDarkTheme, setIsDarkTheme] = useState(false);
-  
-  const [budget, setBudget] = useState(10000); // Budget state
-  const [notificationsEnabled, setNotificationsEnabled] = useState(false); // Notification state
-  const [showNotification, setShowNotification] = useState(false); // State to show/hide notification
+  const [budget, setBudget] = useState(10000);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const addIncome = (amount) => {
-    setIncome((prevIncome) => prevIncome + amount);
-    const newTransaction = { id: Date.now(), type: 'income', amount };
-    setTransactions((prevTransactions) => [newTransaction, ...prevTransactions]);
-    
-    // Check if the balance exceeds budget and remove notification if true
-    if (income + amount - expense >= budget) {
-      setShowNotification(false);  // Hide notification if balance is above budget
-    }
+    setIncome((prevIncome) => {
+      const newIncome = prevIncome + amount;
+      const newTransaction = { id: Date.now(), type: 'income', amount };
+      setTransactions((prevTransactions) => {
+        const updatedTransactions = [newTransaction, ...prevTransactions];
+        localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+        localStorage.setItem('income', newIncome);
+        return updatedTransactions;
+      });
+      return newIncome;
+    });
   };
 
   const addExpense = (amount, category) => {
-    setExpense((prevExpense) => prevExpense + amount);
-    const newTransaction = { id: Date.now(), type: 'expense', amount, category };
-    setTransactions((prevTransactions) => [newTransaction, ...prevTransactions]);
+    setExpense((prevExpense) => {
+      const newExpense = prevExpense + amount;
+      const newTransaction = { id: Date.now(), type: 'expense', amount, category };
+      setTransactions((prevTransactions) => {
+        const updatedTransactions = [newTransaction, ...prevTransactions];
+        localStorage.setItem('transactions', JSON.stringify(updatedTransactions));
+        localStorage.setItem('expense', newExpense);
+        return updatedTransactions;
+      });
 
-    // Check if the balance is below budget and show notification if enabled
-    if (notificationsEnabled && income - (expense + amount) < budget) {
-      setShowNotification(true);  // Show notification if balance is below budget
-    }
+      if (notificationsEnabled && (income - (newExpense + amount)) < budget) {
+        setShowNotification(true);
+      }
+      return newExpense;
+    });
   };
 
   const resetData = () => {
     setIncome(0);
     setExpense(0);
     setTransactions([]);
+    localStorage.removeItem('transactions');
+    localStorage.setItem('income', 0);
+    localStorage.setItem('expense', 0);
     alert('All data has been reset.');
   };
 
@@ -58,12 +70,11 @@ function App() {
 
   const balance = income - expense;
 
-  // Watch for changes in the balance and budget
   useEffect(() => {
-    if (income - expense < budget) {
-      setShowNotification(true); // Show notification when balance is below budget
+    if (balance < budget) {
+      setShowNotification(true);
     } else {
-      setShowNotification(false); // Hide notification when balance is above or equal to budget
+      setShowNotification(false);
     }
   }, [income, expense, budget]);
 
@@ -96,10 +107,9 @@ function App() {
   return (
     <ProfileProvider>
       <div className={`App ${isDarkTheme ? 'dark' : 'light'}`}>
-        <Sidebar onSelect={(section) => setSelectedSection(section)} />
+        <Sidebar onSelect={(section) => setSelectedSection(section)} selectedSection={selectedSection} />
         <div className="main-content">
           {renderContent()}
-          {showNotification && <div className="notification">You are going below your budget!</div>}
         </div>
       </div>
     </ProfileProvider>

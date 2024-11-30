@@ -1,15 +1,16 @@
-/* Global Styles */
 .App {
   display: flex;
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #f5f5f5;
+  /* Light background color */
   height: 100vh;
   margin: 0;
   transition: background-color 0.3s ease;
 }
 
 .header {
-  background-color: #4CAF50;
+  background-color: #34495e;
+  /* Dark blue-gray header */
   color: white;
   padding: 10px;
   text-align: left;
@@ -26,14 +27,14 @@
   transition: background-color 0.3s ease;
 }
 
-/* Sidebar and Navigation */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: #333;
+  background-color: #34495e;
+  /* Dark gray-blue background */
   color: white;
   padding-top: 20px;
   transition: width 0.3s;
@@ -49,12 +50,8 @@
 }
 
 .sidebar a:hover {
-  background-color: #575757;
-}
-
-/* Theme toggling */
-.light-theme {
-  background-color: #f9f9f9;
+  background-color: #2c3e50;
+  /* Hover effect for sidebar links */
 }
 
 .dark-theme {
@@ -66,99 +63,10 @@
   background-color: #444;
 }
 
-/* Dashboard and Card Layout */
-.dashboard {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-.card {
-  border: 25px solid #ddd;
-  border-radius: 15px;
-  padding: 30px;
-  margin: 30px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  text-align: center;
-}
-
-.card h3 {
-  margin-bottom: 15px;
-}
-
-.card p {
-  font-size: 18px;
-  margin: 10px 0;
-  color: #333;
-}
-
-.actions {
-  display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
-}
-
-.transaction-list {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.transaction-list table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.transaction-list th, .transaction-list td {
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.transaction-list th {
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Chart Styles */
-canvas {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 20px 0;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
-
-  .sidebar {
-    width: 200px;
-  }
-
-  .card {
-    width: 90%;
-    margin: 10px auto;
-  }
-}
-
-/* Dark Theme Adjustments */
 .dark-theme .card {
   background: #555;
   color: white;
   border-color: #444;
-}
-
-.dark-theme .transaction-list {
-  background-color: #333;
 }
 
 .dark-theme .sidebar {
@@ -173,13 +81,13 @@ canvas {
   background-color: #575757;
 }
 
-/* Notification Styles */
 .notification {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #f44336; /* Red background */
+  background-color: #e74c3c;
+  /* Red background for notifications */
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -187,12 +95,4 @@ canvas {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   transition: opacity 0.3s ease;
-}
-
-.light-theme .notification {
-  background-color: #f44336; /* Red for light theme */
-}
-
-.dark-theme .notification {
-  background-color: #ff5722; /* Slightly darker red for dark theme */
 }

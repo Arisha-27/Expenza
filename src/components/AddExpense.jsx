@@ -1,47 +1,38 @@
 import React, { useState } from 'react';
+import './AddExpense.css';
 
-function AddExpense({ addExpense }) {
+const AddExpense = ({ addExpense }) => {
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
 
-  const handleAddExpense = (e) => {
-    e.preventDefault();
-    const parsedAmount = parseFloat(amount);
-    if (parsedAmount > 0 && category) {
-      addExpense(parsedAmount, category);  // Call addExpense function passed as prop
-      setAmount('');  // Clear the input fields after adding
+  const handleAddExpense = () => {
+    if (amount > 0 && category) {
+      addExpense(parseFloat(amount), category);
+      setAmount('');
       setCategory('');
     } else {
-      alert('Please enter a valid expense amount and category');
+      alert('Please enter a valid amount and category');
     }
   };
 
   return (
-    <div className="add-expense">
-      <h2>Add Expense</h2>
-      <form onSubmit={handleAddExpense}>
-        <label>
-          Amount:
-          <input
-            type="number"
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Category:
-          <input
-            type="text"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Add Expense</button>
-      </form>
+    <div className="form-card">
+      <h4>Add Expense</h4>
+      <input
+        type="number"
+        value={amount}
+        placeholder="Enter expense amount"
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <input
+        type="text"
+        value={category}
+        placeholder="Enter expense category"
+        onChange={(e) => setCategory(e.target.value)}
+      />
+      <button onClick={handleAddExpense}>Add Expense</button>
     </div>
   );
-}
+};
 
 export default AddExpense;

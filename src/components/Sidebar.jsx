@@ -1,43 +1,51 @@
 import React, { useContext } from 'react';
-import './Sidebar.css';
 import { ProfileContext } from '../context/ProfileContext';
+import { FaHome, FaChartBar, FaHistory, FaCog, FaPhoneAlt, FaSignOutAlt } from 'react-icons/fa'; // Importing professional icons
+import './Sidebar.css';
 
-function Sidebar({ onSelect }) {
-  const { userName, profilePic } = useContext(ProfileContext);
-
-  const menuItems = [
-    { name: 'Home', icon: '🏠' },
-    { name: 'Graphs', icon: '📊' },
-    { name: 'History', icon: '📜' },
-    { name: 'Settings', icon: '⚙' },
-    { name: 'Contact Us', icon: '📞' },
-  ];
+const Sidebar = ({ onSelect, selectedSection }) => {
+  const { profilePic, userName } = useContext(ProfileContext); // Access profile context
 
   return (
     <div className="sidebar">
+      {/* Sidebar Header with website name */}
+      <div className="sidebar-header">
+        <h2>Expenza</h2>
+      </div>
+
+      {/* Profile Section */}
       <div className="profile-section">
         <img
-          src={profilePic || 'https://via.placeholder.com/100'}
+          src={profilePic || 'https://via.placeholder.com/80'} // Default image if no profile picture
           alt="Profile"
-          className="profile-pic"
+          className="sidebar-profile-pic"
         />
-        <p className="username">{userName || 'User Name'}</p>
+        <h4>{userName || 'User'}</h4>
       </div>
-      <h2 className="sidebar-header">Menu</h2>
+
+      {/* Sidebar Menu */}
       <ul className="sidebar-menu">
-        {menuItems.map((item, index) => (
-          <li
-            key={index}
-            className="menu-item"
-            onClick={() => onSelect(item.name)}
-          >
-            <span className="menu-icon">{item.icon}</span>
-            <span className="menu-text">{item.name}</span>
-          </li>
-        ))}
+        <li className={selectedSection === 'Home' ? 'active' : ''} onClick={() => onSelect('Home')}>
+          <FaHome /> Dashboard
+        </li>
+        <li className={selectedSection === 'History' ? 'active' : ''} onClick={() => onSelect('History')}>
+          <FaHistory /> History
+        </li>
+        <li className={selectedSection === 'Graphs' ? 'active' : ''} onClick={() => onSelect('Graphs')}>
+          <FaChartBar /> Graphs
+        </li>
+        <li className={selectedSection === 'Settings' ? 'active' : ''} onClick={() => onSelect('Settings')}>
+          <FaCog /> Settings
+        </li>
+        <li className={selectedSection === 'Contact Us' ? 'active' : ''} onClick={() => onSelect('Contact Us')}>
+          <FaPhoneAlt /> Contact Us
+        </li>
+        <li className={selectedSection === 'Logout' ? 'active' : ''} onClick={() => onSelect('Logout')}>
+          <FaSignOutAlt /> Logout
+        </li>
       </ul>
     </div>
   );
-}
+};
 
 export default Sidebar;

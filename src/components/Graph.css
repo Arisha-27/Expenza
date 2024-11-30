@@ -1,60 +1,76 @@
 /* Graph Container Styling */
 .graph-container {
-    width: 90%;
-    margin: 0 auto; /* Center the container */
-    text-align: center;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Header Styling */
-  .graph-container h3 {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  /* Charts Grid */
+  width: 80%;
+  margin: 0 auto;
+  /* Center the container */
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  /* Subtle background color */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Styling */
+.graph-container h3 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #444;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Charts Grid */
+.charts {
+  display: flex;
+  justify-content: center;
+  /* Center the charts */
+  gap: 40px;
+  /* Space between charts */
+  flex-wrap: wrap;
+  /* Wrap to next row for smaller screens */
+  margin-top: 20px;
+}
+
+/* Individual Chart Container */
+.chart {
+  flex: 1;
+  min-width: 250px;
+  /* Ensure charts have a minimum width */
+  max-width: 350px;
+  /* Restrict maximum width */
+  margin: 10px;
+  /* Add space between charts */
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Chart Title Styling */
+.chart h4 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+/* Adjust Canvas for better display */
+.chart canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .charts {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px; /* Space between charts */
-    flex-wrap: wrap; /* Wrap to next row for smaller screens */
+    flex-direction: column;
+    align-items: center;
   }
-  
-  /* Individual Chart Container */
+
   .chart {
-    flex: 1;
-    min-width: 300px; /* Ensure charts have a minimum width */
-    max-width: 400px; /* Restrict maximum width */
-    margin-bottom: 20px; /* Add space between rows */
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    /* Use most of the screen width for smaller devices */
   }
-  
-  /* Chart Title Styling */
-  .chart h4 {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: #555;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .charts {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .chart {
-      max-width: 90%; /* Use most of the screen width for smaller devices */
-    }
-  }
-  
+}

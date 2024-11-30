@@ -1,0 +1,23 @@
+.history-page {
+  padding: 20px;
+}
+
+.history-page h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.view-history {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.view-history a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.view-history a:hover {
+  text-decoration: underline;
+}
